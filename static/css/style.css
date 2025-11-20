@@ -12,6 +12,18 @@
     --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
 body {
     font-family: var(--font-main);
     background-color: var(--bg-color);
@@ -20,7 +32,6 @@ body {
         radial-gradient(circle at 85% 30%, rgba(0, 243, 255, 0.15), transparent 25%);
     color: var(--text-color);
     line-height: 1.6;
-    overflow-x: hidden;
     cursor: none;
 }
 
