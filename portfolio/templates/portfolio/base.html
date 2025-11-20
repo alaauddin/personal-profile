@@ -55,6 +55,10 @@
                 {% if profile.linkedin_link %}
                 <a href="{{ profile.linkedin_link }}" target="_blank"><i class="fab fa-linkedin"></i></a>
                 {% endif %}
+                {% if profile.phone_number %}
+                <a href="https://wa.me/{{ profile.phone_number|cut:' ' }}" target="_blank"><i
+                        class="fab fa-whatsapp"></i></a>
+                {% endif %}
                 <a href="mailto:{{ profile.email }}"><i class="fas fa-envelope"></i></a>
             </div>
         </div>

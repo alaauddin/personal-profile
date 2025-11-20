@@ -195,6 +195,10 @@
             <p>I'm currently available for freelance work or full-time opportunities. If you have a project that needs
                 some creative touch, feel free to contact me!</p>
             <a href="mailto:{{ profile.email }}" class="btn btn-primary btn-lg">Say Hello</a>
+            {% if profile.phone_number %}
+            <a href="https://wa.me/{{ profile.phone_number|cut:' ' }}" class="btn btn-outline btn-lg" target="_blank"><i
+                    class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+            {% endif %}
         </div>
     </div>
 </section>
