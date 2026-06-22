@@ -1,0 +1,6 @@
+db.sqlite3
+media/
+stderr.log
+tmp/
+*.pyc
+__pycache__/
