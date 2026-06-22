@@ -5,7 +5,7 @@ def home(request):
     profile = Profile.objects.first()
     skills = Skill.objects.all()
     projects = Project.objects.all()
-    experiences = Experience.objects.all().order_by('-start_date')
+    experiences = Experience.objects.all().order_by('-is_current', '-start_date')
     educations = Education.objects.all().order_by('-year')
     certifications = Certification.objects.all().order_by('-date')
     

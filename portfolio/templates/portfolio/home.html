@@ -7,23 +7,76 @@
 <section id="home" class="hero">
     <div class="container hero-content">
         <div class="hero-text" data-aos="fade-up">
-            <h1 class="glitch" data-text="I'm {{ profile.name }}">I'm {{ profile.name }}</h1>
-            <p class="subtitle">Full Stack Developer & Creative Coder</p>
+            <div class="cyber-badge">SYSTEMS_ACTIVE_ // PORT: 8080</div>
+            <h1 class="glitch-title" data-text="{{ profile.name }}">{{ profile.name }}</h1>
+            <p class="subtitle">
+                <span class="role-typewriter" data-roles="Distributed Systems Engineer, Django Specialist, AI & KYC Platform Architect, Cybersecurity Alumnus"></span><span class="cursor-blink">_</span>
+            </p>
             <div class="cta-buttons">
-                <a href="#portfolio" class="btn btn-primary">View Work</a>
-                <a href="#contact" class="btn btn-outline">Contact Me</a>
+                <a href="#portfolio" class="btn btn-primary"><i class="fas fa-terminal"></i> View Work</a>
+                <a href="#contact" class="btn btn-outline"><i class="fas fa-satellite-dish"></i> Contact Me</a>
+            </div>
+
+            <!-- Interactive CLI Terminal Widget -->
+            <div class="terminal-widget" data-aos="fade-up" data-aos-delay="200">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="terminal-dot red"></span>
+                        <span class="terminal-dot yellow"></span>
+                        <span class="terminal-dot green"></span>
+                    </div>
+                    <span class="terminal-title">atf@node-cluster:~</span>
+                    <span class="terminal-status">STATUS: ONLINE</span>
+                </div>
+                <div class="terminal-body">
+                    <div class="terminal-line"><span class="term-prompt">atf$</span> cat core_info.json</div>
+                    <div class="terminal-output">
+{
+  "name": "{{ profile.name }}",
+  "focus": "High-Performance Systems & AI-Driven KYC Platform Architecture",
+  "stack": ["Django/Python", "Celery", "Docker", "DMN (Decision Logic)", "SQL"]
+}
+                    </div>
+                    <div class="terminal-line"><span class="term-prompt">atf$</span> tail -n 4 logs/system_diagnostics.log</div>
+                    <div class="terminal-output logs-container">
+                        <div class="log-row">[OK] Celery distributed tasks queue active.</div>
+                        <div class="log-row">[OK] DMN engine initialized: runtime rule injection enabled.</div>
+                        <div class="log-row">[OK] Docker containers deployed: healthy.</div>
+                        <div class="log-row">[INFO] Type 'help' to query custom profile datasets.</div>
+                    </div>
+                    <div class="terminal-input-row">
+                        <span class="term-prompt">atf$</span>
+                        <input type="text" class="terminal-input" placeholder="type 'help' or 'skills'..." autofocus autocomplete="off" spellcheck="false">
+                    </div>
+                </div>
             </div>
         </div>
+        
         <div class="hero-image" data-aos="fade-left">
             {% if profile.profile_image %}
-            <div class="image-wrapper">
-                <img src="{{ profile.profile_image.url }}" alt="{{ profile.name }}">
+            <div class="image-wrapper-cyber">
+                <div class="cyber-portal-bg"></div>
+                <div class="cyber-portal-ring"></div>
+                <div class="cyber-portal-grid"></div>
+                <div class="scanner-laser-body"></div>
+                <img src="{{ profile.profile_image.url }}" alt="{{ profile.name }}" class="cyber-portrait">
+                <div class="cyber-hud-frame">
+                    <div class="corner top-left"></div>
+                    <div class="corner top-right"></div>
+                    <div class="corner bottom-left"></div>
+                    <div class="corner bottom-right"></div>
+                    <span class="hud-tag">SECURE_TARGET_01</span>
+                    <span class="hud-coords">15°22'N 44°11'E</span>
+                </div>
             </div>
             {% endif %}
         </div>
     </div>
     <div class="scroll-down">
         <a href="#about">
+            <span class="mouse-icon">
+                <span class="wheel"></span>
+            </span>
             <i class="fas fa-chevron-down"></i>
         </a>
     </div>
@@ -32,36 +85,45 @@
 <!-- About Section -->
 <section id="about" class="section">
     <div class="container">
-        <h2 class="section-title" data-aos="fade-up">About Me</h2>
+        <h2 class="section-title" data-aos="fade-up">Core Architecture</h2>
         <div class="about-content" data-aos="fade-up" data-aos-delay="100">
-            <div class="bio">
-                {{ profile.bio|linebreaks }}
+            <div class="bio-cyber">
+                <div class="bio-header"><i class="fas fa-info-circle"></i> SYSTEM_SUMMARY.md</div>
+                <div class="bio-body">
+                    {{ profile.bio|linebreaks }}
+                </div>
             </div>
             {% if profile.resume %}
-            <a href="{{ profile.resume.url }}" class="btn btn-primary" target="_blank">Download Resume</a>
+            <a href="{{ profile.resume.url }}" class="btn btn-primary glow-btn" target="_blank">
+                <i class="fas fa-file-download"></i> Fetch Resume PDF
+            </a>
             {% endif %}
         </div>
 
         <!-- Experience & Education Grid -->
         <div class="timeline-grid">
+            <!-- Experience -->
             <div class="timeline-column" data-aos="fade-right">
-                <h3 class="column-title"><i class="fas fa-briefcase"></i> Experience</h3>
-                <div class="timeline">
+                <h3 class="column-title"><i class="fas fa-network-wired"></i> Deployment History</h3>
+                <div class="timeline-pipeline">
                     {% for exp in experiences %}
-                    <div class="timeline-item">
-                        <div class="timeline-icon">
+                    <div class="timeline-node">
+                        <div class="node-indicator">
                             {% if exp.use_logo and exp.company_logo %}
-                            <img src="{{ exp.company_logo.url }}" alt="{{ exp.company }}" class="timeline-logo">
+                            <img src="{{ exp.company_logo.url }}" alt="{{ exp.company }}" class="node-logo">
                             {% else %}
                             <i class="{{ exp.icon_class }}"></i>
                             {% endif %}
+                            <span class="node-pulse"></span>
                         </div>
-                        <div class="timeline-content">
-                            <div class="timeline-date">{{ exp.start_date|date:"M Y" }} - {% if exp.is_current %} Present
-                                {% else %}{{ exp.end_date|date:"M Y" }}{% endif %}</div>
-                            <h4>{{ exp.role }}</h4>
-                            <h5>{{ exp.company }}</h5>
-                            <p>{{ exp.description }}</p>
+                        <div class="node-details">
+                            <span class="node-date">
+                                {{ exp.start_date|date:"M Y" }} - {% if exp.is_current %}<span class="accent-glow">PRESENT</span>
+                                {% else %}{{ exp.end_date|date:"M Y" }}{% endif %}
+                            </span>
+                            <h4 class="node-role">{{ exp.role }}</h4>
+                            <h5 class="node-company">{{ exp.company }}</h5>
+                            <p class="node-desc">{{ exp.description }}</p>
                         </div>
                     </div>
                     {% endfor %}
@@ -70,21 +132,21 @@
 
             <!-- Education -->
             <div class="timeline-column" data-aos="fade-left">
-                <h3 class="column-title"><i class="fas fa-graduation-cap"></i> Education</h3>
-                <div class="timeline">
+                <h3 class="column-title"><i class="fas fa-graduation-cap"></i> Knowledge Base</h3>
+                <div class="timeline-pipeline education">
                     {% for edu in educations %}
-                    <div class="timeline-item">
-                        <div class="timeline-icon">
+                    <div class="timeline-node">
+                        <div class="node-indicator edu-icon">
                             {% if edu.use_logo and edu.institution_logo %}
-                            <img src="{{ edu.institution_logo.url }}" alt="{{ edu.institution }}" class="timeline-logo">
+                            <img src="{{ edu.institution_logo.url }}" alt="{{ edu.institution }}" class="node-logo">
                             {% else %}
                             <i class="{{ edu.icon_class }}"></i>
                             {% endif %}
                         </div>
-                        <div class="timeline-content">
-                            <div class="timeline-date">{{ edu.year }}</div>
-                            <h4>{{ edu.degree }}</h4>
-                            <h5>{{ edu.institution }}</h5>
+                        <div class="node-details">
+                            <span class="node-date">{{ edu.year }}</span>
+                            <h4 class="node-role">{{ edu.degree }}</h4>
+                            <h5 class="node-company">{{ edu.institution }}</h5>
                         </div>
                     </div>
                     {% endfor %}
@@ -94,47 +156,20 @@
     </div>
 </section>
 
-<!-- Certifications Section -->
-<section id="certifications" class="section">
-    <div class="container">
-        <h2 class="section-title" data-aos="fade-up">Certifications</h2>
-        <div class="cert-grid">
-            {% for cert in certifications %}
-            <div class="cert-card" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:1 }}00">
-                <div class="cert-icon">
-                    {% if cert.use_logo and cert.certification_logo %}
-                    <img src="{{ cert.certification_logo.url }}" alt="{{ cert.name }}" class="timeline-logo"
-                        style="border-radius: 12px;">
-                    {% else %}
-                    <i class="{{ cert.icon_class }}"></i>
-                    {% endif %}
-                </div>
-                <div class="cert-info">
-                    <h4>{{ cert.name }}</h4>
-                    <h5>{{ cert.issuer }}</h5>
-                    <span class="cert-date">{{ cert.date|date:"M Y" }}</span>
-                    {% if cert.url %}
-                    <a href="{{ cert.url }}" target="_blank" class="cert-link">View Credential <i
-                            class="fas fa-external-link-alt"></i></a>
-                    {% endif %}
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-
 <!-- Skills Section -->
 <section id="skills" class="section bg-darker">
     <div class="container">
-        <h2 class="section-title" data-aos="fade-up">Skill Hive</h2>
+        <h2 class="section-title" data-aos="fade-up">Capability Matrix</h2>
         <div class="hex-grid">
             {% for skill in skills %}
-            <div class="hex-item" data-aos="zoom-in" data-aos-delay="{{ forloop.counter0|add:1 }}00">
+            <div class="hex-item" data-aos="zoom-in" data-aos-delay="{{ forloop.counter0|add:1 }}50">
                 <div class="hex-content">
                     <div class="hex-icon"><i class="{{ skill.icon_class }}"></i></div>
                     <div class="hex-info">
                         <h3>{{ skill.name }}</h3>
+                        <div class="hex-bar-container">
+                            <div class="hex-bar" style="width: {{ skill.proficiency }}%"></div>
+                        </div>
                         <span class="hex-percent">{{ skill.proficiency }}%</span>
                     </div>
                 </div>
@@ -147,39 +182,78 @@
 <!-- Portfolio Section -->
 <section id="portfolio" class="section">
     <div class="container">
-        <h2 class="section-title" data-aos="fade-up">My Work</h2>
+        <h2 class="section-title" data-aos="fade-up">Project Repositories</h2>
         <div class="projects-grid">
             {% for project in projects %}
-            <div class="project-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="project-image">
-                    {% if project.image %}
-                    <img src="{{ project.image.url }}" alt="{{ project.title }}">
-                    {% else %}
-                    <div class="project-placeholder">
-                        <i class="fas fa-code"></i>
+            <div class="project-card-cyber" data-aos="fade-up" data-aos-delay="100">
+                <div class="project-card-inner">
+                    <div class="project-header">
+                        <div class="card-dots">
+                            <span class="c-dot"></span>
+                            <span class="c-dot"></span>
+                            <span class="c-dot"></span>
+                        </div>
+                        <span class="project-tag">PROJECT_{{ forloop.counter }}</span>
                     </div>
-                    {% endif %}
-                    <div class="project-overlay">
-                        <div class="project-links">
-                            {% if project.live_link %}
-                            <a href="{{ project.live_link }}" target="_blank" title="Live Demo"><i
-                                    class="fas fa-external-link-alt"></i></a>
-                            {% endif %}
-                            {% if project.repo_link %}
-                            <a href="{{ project.repo_link }}" target="_blank" title="View Code"><i
-                                    class="fab fa-github"></i></a>
-                            {% endif %}
+                    <div class="project-image-wrapper">
+                        {% if project.image %}
+                        <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                        {% else %}
+                        <div class="project-placeholder-cyber">
+                            <i class="fas fa-terminal"></i>
+                        </div>
+                        {% endif %}
+                        <div class="project-cyber-overlay">
+                            <div class="project-action-links">
+                                {% if project.live_link %}
+                                <a href="{{ project.live_link }}" target="_blank" title="Live Demo"><i class="fas fa-external-link-alt"></i> DEMO</a>
+                                {% endif %}
+                                {% if project.repo_link %}
+                                <a href="{{ project.repo_link }}" target="_blank" title="View Source"><i class="fab fa-github"></i> REPO</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-details">
+                        <h3>{{ project.title }}</h3>
+                        <p>{{ project.description|truncatechars:120 }}</p>
+                        <div class="tech-tags">
+                            {% for tech in project.tech_stack.split %}
+                            <span class="t-tag"><i class="fas fa-code-branch"></i> {{ tech }}</span>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
-                <div class="project-info">
-                    <h3>{{ project.title }}</h3>
-                    <p>{{ project.description|truncatechars:100 }}</p>
-                    <div class="tech-stack">
-                        {% for tech in project.tech_stack.split %}
-                        <span class="tech-tag">{{ tech }}</span>
-                        {% endfor %}
-                    </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Certifications Section -->
+<section id="certifications" class="section">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Verifiable Credentials</h2>
+        <div class="cert-grid-cyber">
+            {% for cert in certifications %}
+            <div class="cert-card-cyber" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:1 }}50">
+                <div class="cert-card-border-glow"></div>
+                <div class="cert-icon-wrapper">
+                    {% if cert.use_logo and cert.certification_logo %}
+                    <img src="{{ cert.certification_logo.url }}" alt="{{ cert.name }}" class="cert-logo-img">
+                    {% else %}
+                    <i class="{{ cert.icon_class }}"></i>
+                    {% endif %}
+                </div>
+                <div class="cert-details">
+                    <h4>{{ cert.name }}</h4>
+                    <h5>Issuer: {{ cert.issuer }}</h5>
+                    <span class="cert-date-stamp"><i class="far fa-calendar-alt"></i> {{ cert.date|date:"M Y" }}</span>
+                    {% if cert.url %}
+                    <a href="{{ cert.url }}" target="_blank" class="cert-cyber-link">
+                        QUERY_AUTHORITY <i class="fas fa-external-link-alt"></i>
+                    </a>
+                    {% endif %}
                 </div>
             </div>
             {% endfor %}
@@ -190,15 +264,20 @@
 <!-- Contact Section -->
 <section id="contact" class="section bg-darker">
     <div class="container">
-        <h2 class="section-title" data-aos="fade-up">Get In Touch</h2>
-        <div class="contact-content" data-aos="fade-up">
-            <p>I'm currently available for freelance work or full-time opportunities. If you have a project that needs
-                some creative touch, feel free to contact me!</p>
-            <a href="mailto:{{ profile.email }}" class="btn btn-primary btn-lg">Say Hello</a>
-            {% if profile.phone_number %}
-            <a href="https://wa.me/{{ profile.phone_number|cut:' ' }}" class="btn btn-outline btn-lg" target="_blank"><i
-                    class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
-            {% endif %}
+        <h2 class="section-title" data-aos="fade-up">Establish Connection</h2>
+        <div class="contact-card-cyber" data-aos="fade-up">
+            <div class="scanner-laser slow"></div>
+            <p>Host server is online. Select your communication gateway to transmit parameters or establish connection sessions.</p>
+            <div class="contact-gateways">
+                <a href="mailto:{{ profile.email }}" class="btn btn-primary contact-gate-btn">
+                    <i class="fas fa-envelope"></i> SMTP Email Gateway
+                </a>
+                {% if profile.phone_number %}
+                <a href="https://wa.me/{{ profile.phone_number|cut:' ' }}" class="btn btn-outline contact-gate-btn" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Secure WhatsApp Channel
+                </a>
+                {% endif %}
+            </div>
         </div>
     </div>
 </section>
